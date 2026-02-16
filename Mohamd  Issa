@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Portal</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eef2f5;
+}
+
+/* Top Header */
+.topbar {
+    background: #2d3e50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Assignments bar */
+.subbar {
+    background: #4f6d8c;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Container */
+.container {
+    padding: 15px;
+}
+
+/* Class Card */
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.arrow {
+    color: #ff4d6d;
+    font-size: 18px;
+    margin-right: 6px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.teacher {
+    color: #4f6d8c;
+    margin-top: 3px;
+}
+
+.grade {
+    margin-top: 6px;
+    font-weight: bold;
+}
+
+.edit-btn, .add-btn {
+    margin-top: 8px;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background: #4f6d8c;
+    color: white;
+}
+
+.add-btn {
+    background: green;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+.login {
+    text-align: center;
+    margin-top: 120px;
+}
+
+.google-btn {
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">Dearborn Public Schools</div>
+<div class="subbar">Assignments</div>
+
+<div class="container">
+
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="login">
+    <h2>Sign In</h2>
+    <button class="google-btn" onclick="login()">Sign in with Google</button>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="hidden">
+
+    <div class="card">
+        <div class="title">
+            <span class="arrow">▶</span>
+            1 - Chemistry S2 (623090)
+        </div>
+        <div class="teacher">Bazzi-Hijazi, R</div>
+        <div class="grade" id="chemGrade">
+            Current Quarter 3 HS Grade: A
+        </div>
+
+        <div id="chemAssignments"></div>
+
+        <button class="edit-btn" onclick="changeGrade('chemGrade')">Change Grade</button>
+        <button class="add-btn" onclick="addAssignment('chemAssignments')">Add Assignment</button>
+    </div>
+
+    <div class="card">
+        <div class="title">
+            <span class="arrow">▶</span>
+            5 - AP Human Geography (622270)
+        </div>
+        <div class="teacher">Jedele, S</div>
+        <div class="grade" id="geoGrade">
+            Current Quarter 3 HS Grade: A-
+        </div>
+
+        <div id="geoAssignments"></div>
+
+        <button class="edit-btn" onclick="changeGrade('geoGrade')">Change Grade</button>
+        <button class="add-btn" onclick="addAssignment('geoAssignments')">Add Assignment</button>
+    </div>
+
+</div>
+
+</div>
+
+<script>
+function login() {
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("dashboard").classList.remove("hidden");
+}
+
+function changeGrade(id) {
+    let newGrade = prompt("Enter new grade:");
+    if(newGrade){
+        document.getElementById(id).innerText =
+        "Current Quarter 3 HS Grade: " + newGrade;
+    }
+}
+
+function addAssignment(sectionId) {
+    let name = prompt("Assignment name:");
+    let score = prompt("Score:");
+    if(name && score){
+        let p = document.createElement("p");
+        p.innerText = name + " - " + score;
+        document.getElementById(sectionId).appendChild(p);
+    }
+}
+</script>
+
+</body>
+</html>
